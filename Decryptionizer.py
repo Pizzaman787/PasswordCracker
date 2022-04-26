@@ -216,6 +216,7 @@ class Decryptionizer:
 				self.currentEncryption = self.currentEncryption + 1
 			else: # if at the end of the encryption list, start at the beginning and guess
 				self.currentEncryption = 0 # reset current encryption
+				self.incrementPermutation() # goes to next permutation
 				guess = self.encrypt(guess, self.validEncryptions[self.currentEncryption]) # makes a guess
 				self.currentEncryption = self.currentEncryption + 1
 		return guess
@@ -227,7 +228,6 @@ class Decryptionizer:
 		# gets the next permutation
 		if (self.totalPermutations == -1 or self.permutation < self.totalPermutations):
 			tempList = self.getPermutationAsList() # gets current permutation
-			self.incrementPermutation() # goes to next permutation
 		else:
 			return None # returns null if out of guesses
 		# encrypts it with the correct encryptions
